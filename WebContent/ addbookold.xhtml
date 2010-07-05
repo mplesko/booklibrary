@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+	
+<f:view>
+	<head>
+	<link href="css/styles.css" rel="stylesheet" type="text/css" />
+	<title>add book</title>
+	</head>
+	<body>
+	<h:form id="addbookForm">
+		<h1><h:outputText value="#{msgs.addBook}" /></h1>
+		<h:message for="addbookForm" errorClass="error" showSummary="true" />
+
+		<h:panelGrid columns="3">
+			<h:outputText value="#{msgs.title}" />
+			<h:inputText id="title" value="#{mainbean.addBookTitle}" required="true" />
+			<h:message for="title" errorClass="error" />
+			<h:outputText value="#{msgs.authorFirstName}" />
+			<h:inputText id="authorFirstName" value="#{mainbean.addAuthorFirstName}"
+				required="true" />
+			<h:message for="authorFirstName" errorClass="error" />
+			<h:outputText value="#{msgs.authorLastName}" />
+			<h:inputText id="authorLastName" value="#{mainbean.addAuthorLastName}"
+				required="true" />
+			<h:message for="authorLastName" errorClass="error" />
+		</h:panelGrid>
+
+		<h:commandButton value="#{msgs.addBook}" action="#{mainbean.addBook}" />
+		<h:commandButton value="#{msgs.cancel}" action="#{mainbean.cancel}"
+			immediate="true" />
+	</h:form>
+	</body>
+</f:view>
+</html>

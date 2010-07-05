@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf12648295599780" configfile="/booklibrary/WebContent/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="login" x="122" y="178" id="pf12654371318083" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" path="/login.jsp"/>
+  <nodes xsi:type="pageflow:PFPage" name="main" x="122" y="946" id="pf12654371318085" referenceLink="//@navigationRule.3/@navigationCase.0/@toViewId|" path="/main.jsp"/>
+  <nodes xsi:type="pageflow:PFPage" name="addbook" x="122" y="1330" id="pf12679270663582" referenceLink="//@navigationRule.3/@fromViewId|" path="/addbook.jsp"/>
+  <nodes xsi:type="pageflow:PFPage" name="login.xhtml" x="122" y="562" id="pf12750243431100" referenceLink="//@navigationRule.0/@navigationCase.1/@toViewId|" outlinks="pf12750243431102 pf12758423116130" inlinks="pf12750243431102" path="login.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="main.xhtml" x="338" y="1714" id="pf12750243431104" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" inlinks="pf12758423116131" path="main.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="addbook.xhtml" x="122" y="1714" id="pf12750243431107" referenceLink="//@navigationRule.3/@fromViewId|" outlinks="pf12758427495317" inlinks="pf12758423116142" path="addbook.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="library.xhtml" x="338" y="562" id="pf12758423116143" referenceLink="//@navigationRule.3/@navigationCase.0/@toViewId|" outlinks="pf12758423116142" inlinks="pf12758423116130 pf12758427495317" path="library.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="*" x="122" y="2098" id="pf12758423116144" referenceLink="//@navigationRule.1/@fromViewId|" outlinks="pf12758423116131 pf12758423116145" path="*"/>
+  <nodes xsi:type="pageflow:PFPage" name="login.xhtml" x="338" y="2098" id="pf12758423116146" referenceLink="//@navigationRule.1/@navigationCase.1/@toViewId|" inlinks="pf12758423116145" path="/login.xhtml"/>
+  <links id="pf12758423116130" target="pf12758423116143" source="pf12750243431100" outcome="success"/>
+  <links id="pf12758423116131" target="pf12750243431104" source="pf12758423116144" outcome="logout"/>
+  <links id="pf12758423116145" target="pf12758423116146" source="pf12758423116144" outcome="login" redirect="true"/>
+  <links id="pf12750243431102" target="pf12750243431100" source="pf12750243431100" outcome="failure">
+    <bendPoints d1Height="-36" d2Height="-36"/>
+    <bendPoints d1Width="-64" d1Height="-36" d2Width="-64" d2Height="-36"/>
+    <bendPoints d1Width="-64" d2Width="-64"/>
+  </links>
+  <links id="pf12758423116142" target="pf12750243431107" source="pf12758423116143" outcome="addBooks"/>
+  <links id="pf12758427495317" target="pf12758423116143" source="pf12750243431107" outcome="success"/>
+</pageflow:Pageflow>

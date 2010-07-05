@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+
+<ui:composition template="/template3.xhtml">
+	<ui:define name="title">
+		library		
+	</ui:define>
+	<ui:define name="content">
+		<h:form id="mylibraryform">
+			<rich:panel>
+				<f:facet name="header">
+					<h:outputText value="My Library Form" />
+				</f:facet>
+
+				<h:message for="mylibraryform" errorClass="error" showSummary="true" />
+				<br />
+				<h:dataTable value="#{mainbean.bookBeans}" var="book"
+					headerClass="dataTableHeader" styleClass="dataTable"
+					rowClasses="dataTableOddRow,dataTableEvenRow"
+					cellspacing="5" cellpadding="5">
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="#{msgs.delete}" />
+						</f:facet>
+						<h:selectBooleanCheckbox value="#{book.markedForDeletion}">
+							<a4j:support event="onclick" reRender="mainButtons" />
+						</h:selectBooleanCheckbox>
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="#{msgs.title}" />
+						</f:facet>
+						<h:commandLink value="#{book.title}" action="#{mainbean.edit}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="#{msgs.author}" />
+						</f:facet>
+						<h:outputText value="#{book.authorName}" />
+					</h:column>
+				</h:dataTable>
+				<br />
+				<h:panelGrid id="mainButtons" columns="2">
+					<h:commandButton id="updateBooksButton" value="#{msgs.updatebooks}"
+						action="#{mainbean.updateBooks}"
+						rendered="#{mainbean.haveBooksToUpdate}" />
+					<h:commandButton value="#{msgs.addABook}"
+						action="#{mainbean.addBooks}" />
+				</h:panelGrid>
+			</rich:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

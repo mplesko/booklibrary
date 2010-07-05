@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/repository/!svn/ver/53/booklibrary/WebContent/WEB-INF
+END
+faces-config.xml
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/repository/!svn/ver/74/booklibrary/WebContent/WEB-INF/faces-config.xml
+END
+server-config.wsdd
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/repository/!svn/ver/75/booklibrary/WebContent/WEB-INF/server-config.wsdd
+END
+web.xml
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/repository/!svn/ver/75/booklibrary/WebContent/WEB-INF/web.xml
+END

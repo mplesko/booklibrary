@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/repository/!svn/ver/53/booklibrary/src/com/logansrings/booklibrary/persistence
+END
+DatabaseDelegate.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/repository/!svn/ver/74/booklibrary/src/com/logansrings/booklibrary/persistence/DatabaseDelegate.java
+END
+InMemoryPersistenceDelegate.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/repository/!svn/ver/74/booklibrary/src/com/logansrings/booklibrary/persistence/InMemoryPersistenceDelegate.java
+END
+PersistenceDelegate.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/repository/!svn/ver/74/booklibrary/src/com/logansrings/booklibrary/persistence/PersistenceDelegate.java
+END
+InMemoryPersistenceDelegateTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/repository/!svn/ver/68/booklibrary/src/com/logansrings/booklibrary/persistence/InMemoryPersistenceDelegateTest.java
+END
+DummyDelegate.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/repository/!svn/ver/74/booklibrary/src/com/logansrings/booklibrary/persistence/DummyDelegate.java
+END
+Persistable.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/repository/!svn/ver/68/booklibrary/src/com/logansrings/booklibrary/persistence/Persistable.java
+END

@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/svn/repository/!svn/ver/75/booklibrary/WebContent/WEB-INF/BookLibraryServiceImplService/com/logansrings/booklibrary/service
+END
+undeploy.wsdd
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/svn/repository/!svn/ver/75/booklibrary/WebContent/WEB-INF/BookLibraryServiceImplService/com/logansrings/booklibrary/service/undeploy.wsdd
+END
+deploy.wsdd
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/svn/repository/!svn/ver/75/booklibrary/WebContent/WEB-INF/BookLibraryServiceImplService/com/logansrings/booklibrary/service/deploy.wsdd
+END

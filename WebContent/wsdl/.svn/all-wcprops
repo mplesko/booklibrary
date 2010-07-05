@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/repository/!svn/ver/75/booklibrary/WebContent/wsdl
+END
+BookLibraryServiceClient.wsdl
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/repository/!svn/ver/75/booklibrary/WebContent/wsdl/BookLibraryServiceClient.wsdl
+END
+BookLibraryServiceImpl.wsdl
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/repository/!svn/ver/75/booklibrary/WebContent/wsdl/BookLibraryServiceImpl.wsdl
+END

@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/repository/!svn/ver/68/booklibrary/src/com/logansrings/booklibrary/notification
+END
+Type.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/repository/!svn/ver/68/booklibrary/src/com/logansrings/booklibrary/notification/Type.java
+END
+Notification.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/repository/!svn/ver/69/booklibrary/src/com/logansrings/booklibrary/notification/Notification.java
+END
+Severity.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/repository/!svn/ver/68/booklibrary/src/com/logansrings/booklibrary/notification/Severity.java
+END
+NotificationObserver.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/repository/!svn/ver/68/booklibrary/src/com/logansrings/booklibrary/notification/NotificationObserver.java
+END

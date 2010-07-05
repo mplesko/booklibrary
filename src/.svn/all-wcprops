@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/repository/!svn/ver/53/booklibrary/src
+END
+logback.xml
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/repository/!svn/ver/70/booklibrary/src/logback.xml
+END
+messages.properties
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/repository/!svn/ver/74/booklibrary/src/messages.properties
+END
+log4j.properties
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/repository/!svn/ver/69/booklibrary/src/log4j.properties
+END
+application.properties
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/repository/!svn/ver/69/booklibrary/src/application.properties
+END

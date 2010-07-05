@@ -1,0 +1,30 @@
+<rich:page xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j" markupType="xhtml"
+	contentType="text/html" sidebarWidth="300" sidebarPosition="left">
+	<f:facet name="sidebar">
+		<ui:include src="/junk.xhtml" />
+	</f:facet>
+	<f:facet name="header">
+		<h:panelGroup>
+			<table width="100%">
+				<tbody>
+					<tr>
+						<td>
+						<h2>RichFaces Layouts</h2>
+						</td>
+						<td align="right"><h:commandLink value="#{msgs.logout}"
+							action="#{mainbean.logout}" /></td>
+					</tr>
+				</tbody>
+			</table>
+		</h:panelGroup>
+	</f:facet>
+	<f:facet name="footer">
+		<h:outputText value="footer text" />
+	</f:facet>
+	<ui:include src="/junk.xhtml" />
+</rich:page>

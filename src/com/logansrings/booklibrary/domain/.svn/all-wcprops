@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/repository/!svn/ver/53/booklibrary/src/com/logansrings/booklibrary/domain
+END
+Author.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/repository/!svn/ver/74/booklibrary/src/com/logansrings/booklibrary/domain/Author.java
+END
+Library.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/repository/!svn/ver/68/booklibrary/src/com/logansrings/booklibrary/domain/Library.java
+END
+BookInfo.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/repository/!svn/ver/53/booklibrary/src/com/logansrings/booklibrary/domain/BookInfo.java
+END
+Book.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/repository/!svn/ver/74/booklibrary/src/com/logansrings/booklibrary/domain/Book.java
+END
+User.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/repository/!svn/ver/69/booklibrary/src/com/logansrings/booklibrary/domain/User.java
+END
+ObjectFactory.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/repository/!svn/ver/74/booklibrary/src/com/logansrings/booklibrary/domain/ObjectFactory.java
+END

@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/repository/!svn/ver/53/booklibrary/src/com/logansrings/booklibrary/event
+END
+Event.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/repository/!svn/ver/68/booklibrary/src/com/logansrings/booklibrary/event/Event.java
+END
+EventObserver.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/repository/!svn/ver/53/booklibrary/src/com/logansrings/booklibrary/event/EventObserver.java
+END
+IEvent.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/repository/!svn/ver/53/booklibrary/src/com/logansrings/booklibrary/event/IEvent.java
+END
+Severity.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/repository/!svn/ver/53/booklibrary/src/com/logansrings/booklibrary/event/Severity.java
+END
