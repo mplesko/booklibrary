@@ -7,7 +7,7 @@ BookBean.java
 K 25
 svn:wc:ra_dav:version-url
 V 90
-/svn/repository/!svn/ver/74/booklibrary/src/com/logansrings/booklibrary/bean/BookBean.java
+/svn/repository/!svn/ver/76/booklibrary/src/com/logansrings/booklibrary/bean/BookBean.java
 END
 UserBean.java
 K 25
@@ -19,7 +19,7 @@ AuthorBean.java
 K 25
 svn:wc:ra_dav:version-url
 V 92
-/svn/repository/!svn/ver/74/booklibrary/src/com/logansrings/booklibrary/bean/AuthorBean.java
+/svn/repository/!svn/ver/76/booklibrary/src/com/logansrings/booklibrary/bean/AuthorBean.java
 END
 MainBean.java
 K 25

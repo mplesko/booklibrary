@@ -1,6 +1,7 @@
 package com.logansrings.booklibrary.bean;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.el.ELContext;
@@ -19,9 +20,15 @@ public class MainBean {
 	private UserBean userBean;
 	private Library library;
 	private List<BookBean> bookBeans;
-	private String addBookTitle;
-	private String addAuthorFirstName;
-	private String addAuthorLastName;
+	private Long addBookId;
+
+	public Long getAddBookId() {
+		return addBookId;
+	}
+
+	public void setAddBookId(Long addBookId) {
+		this.addBookId = addBookId;
+	}
 
 	public MainBean() {
 		System.out.println("MainBean.constructor");
@@ -31,7 +38,6 @@ public class MainBean {
 	private void initialize() {
 		initializeUserBean();		
 		initializeLibrary();
-		initializeBookBeans();
 	}
 
 	private void initializeUserBean() {
@@ -43,6 +49,7 @@ public class MainBean {
 
 	private void initializeLibrary() {
 		library = new Library(userBean.getUser());
+		initializeBookBeans();
 	}
 
 	private void initializeBookBeans() {
@@ -59,26 +66,21 @@ public class MainBean {
 		}
 		return bookBeans;
 	}
-
-	public String updateBooks() {
-		System.out.println("MainBean.updateBooks()");
-		if (haveBooksToAdd() || haveBooksToDelete()) {
+	
+	public String deleteBooks() {
+		if (haveBooksToDelete()) {
 			// ok, work to do
 		} else {
 			return null;
 		}
-		List<BookBean> booksToAdd = new ArrayList<BookBean>();
 		List<BookBean> booksToDelete = new ArrayList<BookBean>();
 		for (BookBean book : bookBeans) {
 			if (book.isMarkedForDeletion()) {
 				booksToDelete.add(book);
-			} else if (book.isMarkedForAddition()) {
-				booksToAdd.add(book);
 			}
 		}
-		library.updateBooks(createBooks(booksToAdd), createBooks(booksToDelete));
+		library.updateBooks(null, createBooks(booksToDelete));
 		initializeLibrary();
-		initializeBookBeans();
 		return null;
 	}
 
@@ -86,28 +88,17 @@ public class MainBean {
 		return ObjectFactory.createBooks(bookBeans);
 	}
 
-	public String edit() {
-		System.out.println("MainBean.edit()");
-		return "edit";
-	}
-
-	public String addBooks() {
-		System.out.println("MainBean.addBooks()");
-		return "addBooks";
-	}
-	
-	public String addBook() {
-		System.out.println("MainBean.addBook()");
-		bookBeans.add(new BookBean(
-				addBookTitle, addAuthorFirstName, addAuthorLastName));
-		clearAddInfo();
+	public String addBookToLibrary() {
+		System.out.println("MainBean.addBookToLibrary()");
+		Book book = createBook(addBookId);
+		List<Book> books = Collections.singletonList(book);
+		library.updateBooks(books, null);
+		initializeLibrary();
 		return "success";
 	}
 	
-	private void clearAddInfo() {
-		addBookTitle = "";
-		addAuthorFirstName = "";
-		addAuthorLastName = "";
+	private Book createBook(Long bookId) {
+		return ObjectFactory.createBook(bookId);
 	}
 
 	public String cancel() {
@@ -115,10 +106,9 @@ public class MainBean {
 		return "success";
 	}
 	
-	public boolean getHaveBooksToUpdate() {
-		System.out.println("MainBean.getHaveBooksToUpdate()");
-		return bookBeans.size() > 0 && 
-			(haveBooksToDelete() || haveBooksToAdd());
+	public boolean getHaveBooksToDelete() {
+		System.out.println("MainBean.getHaveBooksToDelete()");
+		return bookBeans.size() > 0 && haveBooksToDelete();
 	}
 
 	private boolean haveBooksToDelete() {
@@ -137,30 +127,6 @@ public class MainBean {
 			}
 		}
 		return false;
-	}
-
-	public String getAddBookTitle() {
-		return addBookTitle;
-	}
-
-	public void setAddBookTitle(String title) {
-		addBookTitle = title;
-	}
-
-	public String getAddAuthorFirstName() {
-		return addAuthorFirstName;
-	}
-
-	public void setAddAuthorFirstName(String name) {
-		addAuthorFirstName = name;
-	}
-
-	public String getAddAuthorLastName() {
-		return addAuthorLastName;
-	}
-
-	public void setAddAuthorLastName(String name) {
-		addAuthorLastName = name;
 	}
 
 	public String logout() {

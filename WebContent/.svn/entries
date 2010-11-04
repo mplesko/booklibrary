@@ -512,40 +512,6 @@ has-props
 
 325937
 
-addbooks.xhtml
-file
-74
-
-
-
-2010-06-11T23:54:36.000000Z
-a428e52d5494817697ea96d2a0c8c9cf
-2010-06-18T04:56:48.064221Z
-74
-mark
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-1302
-
 booklist.xhtml
 file
 74
@@ -580,10 +546,41 @@ mark
 
 1668
 
-WEB-INF
-dir
+addbooks.xhtml
+file
+76
+
+
+
+2010-08-01T20:35:35.273870Z
+eba1f1de90c88dd51eebfef2aa5d24cf
+2010-08-02T04:29:31.831618Z
+76
+mark
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1298
 
-css
+WEB-INF
 dir
 
 template2.xhtml
@@ -620,14 +617,17 @@ mark
 
 637
 
-addauthors.xhtml
+css
+dir
+
+authorlist.xhtml
 file
 74
 
 
 
-2010-06-11T00:59:40.000000Z
-539a8dee94bd4698b1a31ca94e720dce
+2010-06-10T23:44:56.000000Z
+9f62ed5efbbc63a3ca08fca11f292f80
 2010-06-18T04:56:48.064221Z
 74
 mark
@@ -652,7 +652,7 @@ mark
 
 
 
-1323
+1495
 
 template3.xhtml
 file
@@ -688,14 +688,14 @@ mark
 
 660
 
-authorlist.xhtml
+addauthors.xhtml
 file
 74
 
 
 
-2010-06-10T23:44:56.000000Z
-9f62ed5efbbc63a3ca08fca11f292f80
+2010-06-11T00:59:40.000000Z
+539a8dee94bd4698b1a31ca94e720dce
 2010-06-18T04:56:48.064221Z
 74
 mark
@@ -720,7 +720,7 @@ mark
 
 
 
-1495
+1323
 
 jsp
 dir

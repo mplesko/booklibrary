@@ -11,7 +11,8 @@
 		<tr>
 			<td><img src="deckView.jpg" alt="Deck View" height="100" /></td>
 			<td>
-			<h1><h:outputText value="#{msgs.welcome}" /></h1>
+			<h1><h:outputText value="#{msgs.welcome}" rendered="#{userbean.notLoggedIn}"/></h1>
+			<h1><h:outputText value="#{msgs.welcome1} #{userbean.userName}!" rendered="#{userbean.loggedIn}"/></h1>
 			<h1><h:outputText value="#{msgs.welcome2}" /></h1>
 			</td>
 		</tr>

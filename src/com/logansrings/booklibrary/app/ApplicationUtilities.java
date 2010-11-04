@@ -17,10 +17,9 @@ public class ApplicationUtilities {
                  return Class.forName(className).newInstance();
            } catch (Exception e) {
                  System.out.println(
-
-"ApplicationUtilities().createObjectForClassName() " +
+                		 "ApplicationUtilities().createObjectForClassName() " +
                              "failed for " + className + " " +
-e.getMessage());
+                             e.getMessage());
                  return null;
            }
      }
@@ -40,6 +39,14 @@ e.getMessage());
      }
 
      /**
+     * @param list
+     * @return true if list is null or empty
+     */
+    public static boolean isEmpty(List<?> list) {
+    	 return (list == null ? true : list.isEmpty());
+     }
+
+     /**
       * @param strings
       * @return true if all strings are not null and > zero length
       */
@@ -47,8 +54,7 @@ e.getMessage());
            return ! isEmpty(strings);
      }
 
-     public static String arrayToCommaSeparatedString(String[]
-stringArray) {
+     public static String arrayToCommaSeparatedString(String[] stringArray) {
          StringBuilder result = new StringBuilder();
          int count = 0;
 
@@ -76,8 +82,7 @@ stringArray) {
            return result.toString();
      }
 
-     public static String arrayToFormattedCommaSeparatedString(Object[]
-anArray) {
+     public static String arrayToFormattedCommaSeparatedString(Object[] anArray) {
          StringBuilder result = new StringBuilder();
          int count = 0;
 
@@ -95,14 +100,12 @@ anArray) {
          return result.toString();
      }
 
-     public static void createFacesError(String formId, String summary,
-String detail) {
+     public static void createFacesError(String formId, String summary, String detail) {
            getFacesContext().addMessage(
                        formId, createFacesMessageError(summary, detail));
      }
 
-     private static FacesMessage createFacesMessageError(String summary,
-String detail) {
+     private static FacesMessage createFacesMessageError(String summary, String detail) {
            FacesMessage message = new FacesMessage();
            message.setDetail(detail);
            message.setSummary(summary);

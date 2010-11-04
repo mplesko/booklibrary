@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.logansrings.booklibrary.app.ApplicationContext;
+import com.logansrings.booklibrary.app.ApplicationUtilities;
 import com.logansrings.booklibrary.persistence.Persistable;
 import com.logansrings.booklibrary.persistence.PersistenceDelegate;
 
@@ -36,14 +37,19 @@ public class Library {
 		}
 	}
 
+	/**
+	 * Adds and/or deletes books from this library.
+	 * @param booksToAdd list of books to add or null if no books to add
+	 * @param booksToDelete list of books to delete or null if no books to delete
+	 */
 	public void updateBooks(List<Book> booksToAdd, List<Book> booksToDelete) {
 		System.out.println("Library.updateBooks()");
-		if (booksToAdd.isEmpty()) {
+		if (ApplicationUtilities.isEmpty(booksToAdd)) {
 			// nothing to do
 		} else {
 			addBooks(booksToAdd);
 		}
-		if (booksToDelete.isEmpty()) {
+		if (ApplicationUtilities.isEmpty(booksToDelete)) {
 			// nothing to do
 		} else {
 			deleteBooks(booksToDelete);
@@ -60,10 +66,14 @@ public class Library {
 
 	private void addBooks(List<Book> booksToAdd) {
 		for (Book book : booksToAdd) {
-			UserBook userBook = new UserBook(user, book, "create");
 			// TODO deal with failure
-			boolean successful = getPersistenceDelegate().persist(userBook);
+			boolean successful = addBook(book);
 		}		
+	}
+
+	private boolean addBook(Book book) {
+		UserBook userBook = new UserBook(user, book, "create");
+		return getPersistenceDelegate().persist(userBook);
 	}
 	public String toString() {
 		StringBuilder libraryString = new StringBuilder();

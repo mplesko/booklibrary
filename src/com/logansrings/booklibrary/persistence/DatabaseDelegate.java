@@ -255,7 +255,7 @@ public class DatabaseDelegate implements PersistenceDelegate {
 		stringBuilder
 		.append("DELETE FROM ")
 		.append(persistable.getTableName())
-		.append(" WHERE ")
+//		.append(" WHERE ")
 		.append(buildWhereClause(persistable));
 
 		System.out.println(stringBuilder.toString());

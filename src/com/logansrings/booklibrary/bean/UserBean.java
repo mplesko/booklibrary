@@ -35,13 +35,10 @@ user.getContext());
                  }
 
            } catch (Exception e) {
-                 Notification.newNotification(this,
-"UserBean.createAccount()",
-                             "failed", "", Type.TECHNICAL, Severity.ERROR,
-e);
+                 Notification.newNotification(this, "UserBean.createAccount()",
+                             "failed", "", Type.TECHNICAL, Severity.ERROR, e);
                  ApplicationUtilities.createFacesError("loginForm",
-                             "Technical error prevented user creation",
-"");
+                             "Technical error prevented user creation", "");
                  return "failure";
            }
      }

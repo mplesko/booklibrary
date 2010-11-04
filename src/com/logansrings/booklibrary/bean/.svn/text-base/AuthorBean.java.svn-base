@@ -1,28 +1,40 @@
 package com.logansrings.booklibrary.bean;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+
+import javax.faces.model.SelectItem;
 
 import com.logansrings.booklibrary.domain.Author;
 import com.logansrings.booklibrary.domain.ObjectFactory;
 
 public class AuthorBean {
 
+	private Long id;
 	private String firstName;
 	private String lastName;
-	
+
 	public AuthorBean() {}
 	
+	public AuthorBean(Long id, String firstName, String lastName) {
+		this(firstName, lastName);
+		this.id = id;
+	}
+
 	public AuthorBean(String firstName, String lastName) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 	}
-	
+
 	public String addAuthor() {
-		Author author = new Author(firstName, lastName);
+//		Author author = new Author(firstName, lastName);
+		new Author(firstName, lastName);
 		clear();
 		return null;
 	}
-	
+
 	private void clear() {
 		firstName = "";
 		lastName = "";
@@ -30,7 +42,7 @@ public class AuthorBean {
 
 	public String toString() {
 		return String.format("[%s] id:%d firstName:%s lastName:%s ",
-				"Author", firstName, lastName);
+				"AuthorBean", id, firstName, lastName);
 	}
 
 	public String getFirstName() {
@@ -46,10 +58,41 @@ public class AuthorBean {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	
 
 	public List<AuthorBean> getAuthors() {
 		return ObjectFactory.createAuthorBeans(Author.getAll());
 	}
 
+	public List<SelectItem> getSelectAuthors() {
+		List<SelectItem> selectAuthors = new ArrayList<SelectItem>();
+		for (AuthorBean authorBean : getAuthors()) {
+			selectAuthors.add(new SelectItem(id, authorBean.getAuthorLastNameFirstName()));
+//			selectAuthors.add(new SelectItem(authorBean.getAuthorName(), authorBean.getAuthorName()));
+		}
+		Collections.sort(selectAuthors, new SelectItemComparator());
+		return selectAuthors;
+	}
+
+	public String getAuthorName() {
+		return firstName + " " + lastName;
+	}
+
+
+	public String getAuthorLastNameFirstName() {
+		return lastName + ", " + firstName;
+	}
+
+	public void setAuthorId(Long id) {
+		this.id = id;		
+	}
+
+	public Long getAuthorId() {
+		return id;
+	}
 }
+
+class SelectItemComparator implements Comparator<SelectItem> {  
+	   public int compare(SelectItem s1, SelectItem s2) {  
+	        return s1.getLabel().compareTo(s2.getLabel());  
+	    }  
+	} 
