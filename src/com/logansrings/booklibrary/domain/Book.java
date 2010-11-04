@@ -31,7 +31,7 @@ public class Book implements Persistable{
 
 	private Book() {}
 	
-	protected Book(String title, Author author) {
+	public Book(String title, Author author) {
 		this.title = title;
 		this.author = author;		
 		if (ApplicationUtilities.isEmpty(title)) {

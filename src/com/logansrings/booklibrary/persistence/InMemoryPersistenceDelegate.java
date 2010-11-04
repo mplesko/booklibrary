@@ -9,28 +9,28 @@ import java.util.Map.Entry;
 import com.logansrings.booklibrary.domain.Author;
 
 /**
- * @author chq-markpl
+ * @author mark
  *
  */
 public class InMemoryPersistenceDelegate implements PersistenceDelegate {
-	private List<InMemoryObject> inMemoryObjects = 
+	private List<InMemoryObject> inMemoryObjects =
 		new ArrayList<InMemoryObject>();
 
 	public static void main(String [] args) {
 		InMemoryPersistenceDelegate inMemoryPersistenceDelegate =
 			new InMemoryPersistenceDelegate();
-		
+
 		Author author = Author.getTestAuthor();
 		inMemoryPersistenceDelegate.persist(author);
 		System.out.println(inMemoryPersistenceDelegate.toString());
 		boolean exists = inMemoryPersistenceDelegate.exists(author);
 	}
-	
+
 	public boolean persist(Persistable persistable) {
-		InMemoryObject inMemoryObject = 
+		InMemoryObject inMemoryObject =
 			new InMemoryObject(persistable.getTableName());
-		
-		for (int i = 0; i < persistable.getColumnNames().length; i++) {
+
+		for (int i = 0; i < persistable.getColumnCount(); i++) {
 			inMemoryObject.addColumn(
 					persistable.getColumnNames()[i],
 					persistable.getColumnValues()[i]);
@@ -40,9 +40,9 @@ public class InMemoryPersistenceDelegate implements PersistenceDelegate {
 	}
 
 	public List<Object> findOne(Persistable persistable) {
-		for (InMemoryObject inMemoryObject : 
+		for (InMemoryObject inMemoryObject :
 			getInMemoryObjectsForTable(persistable.getTableName())) {
-			
+
 			boolean found = true;
 			for (int i = 0; i < persistable.getColumnNames().length; i++) {
 				if (inMemoryObject.hasColumn(
@@ -56,11 +56,11 @@ public class InMemoryPersistenceDelegate implements PersistenceDelegate {
 			}
 			if (found) {
 				return inMemoryObject.getValuesAsList();
-			}				
+			}                                                             
 		}
-		return new ArrayList<Object>();		
+		return new ArrayList<Object>();                              
 	}
-	
+
 	private List<InMemoryObject> getInMemoryObjectsForTable(String tableName) {
 		List<InMemoryObject> objects = new ArrayList<InMemoryObject>();
 		for (InMemoryObject inMemoryObject : inMemoryObjects) {
@@ -79,12 +79,12 @@ public class InMemoryPersistenceDelegate implements PersistenceDelegate {
 			return true;
 		}
 	}
-	
+
 	public List<List<Object>> findAny(Persistable persistable) {
 		List<List<Object>> returnList = new ArrayList<List<Object>>();
-		for (InMemoryObject inMemoryObject : 
+		for (InMemoryObject inMemoryObject :
 			getInMemoryObjectsForTable(persistable.getTableName())) {
-			
+
 			boolean found = true;
 			for (int i = 0; i < persistable.getColumnNames().length; i++) {
 				if (inMemoryObject.hasColumn(
@@ -98,22 +98,26 @@ public class InMemoryPersistenceDelegate implements PersistenceDelegate {
 			}
 			if (found) {
 				returnList.add(inMemoryObject.getValuesAsList());
-			}				
-		}		
+			}                                                             
+		}                             
 		return returnList;
 	}
 
 	@Override
 	public List<List<Object>> findAll(Persistable persistable) {
-		// TODO Auto-generated method stub
-		return null;
+		List<List<Object>> returnList = new ArrayList<List<Object>>();
+		for (InMemoryObject inMemoryObject :
+			getInMemoryObjectsForTable(persistable.getTableName())) {
+			returnList.add(inMemoryObject.getValuesAsList());
+		}                             
+		return returnList;
 	}
 
 	@Override
 	public boolean delete(Persistable persistable) {
-		for (InMemoryObject inMemoryObject : 
+		for (InMemoryObject inMemoryObject :
 			getInMemoryObjectsForTable(persistable.getTableName())) {
-			
+
 			boolean found = true;
 			for (int i = 0; i < persistable.getColumnNames().length; i++) {
 				if (inMemoryObject.hasColumn(
@@ -128,11 +132,11 @@ public class InMemoryPersistenceDelegate implements PersistenceDelegate {
 			if (found) {
 				inMemoryObjects.remove(inMemoryObject);
 				return true;
-			}				
+			}                                                             
 		}
 		return false;
 	}
-	
+
 	public String toString() {
 		StringBuilder result = new StringBuilder();
 		for (InMemoryObject inMemoryObject : inMemoryObjects) {
@@ -141,16 +145,16 @@ public class InMemoryPersistenceDelegate implements PersistenceDelegate {
 		}
 		return result.toString();
 	}
-	
-	
+
+
 	/**
-	 * @author chq-markpl
+	 * @author mark
 	 *
 	 */
-	class InMemoryObject {
+	 class InMemoryObject {
 		private String tableName;
 		private Map<String, Object> details = new HashMap<String, Object>();
-		
+
 		public InMemoryObject(String tableName) {
 			this.tableName = tableName;
 		}
@@ -160,8 +164,13 @@ public class InMemoryPersistenceDelegate implements PersistenceDelegate {
 		}
 
 		public boolean hasColumn(String columnName, Object value) {
-			if (details.containsKey(columnName) 
-					&& details.get(columnName) == value) {
+			//                                            System.out.println(value);
+			//                                            System.out.println(details.get(columnName));
+			//                                            Object o0 = details.get(columnName);
+			//                                            Object o1 = details.containsKey(columnName);
+			//                                            Object o2 = details.get(columnName).equals(value);
+			if (details.containsKey(columnName)
+					&& details.get(columnName).equals(value)) {
 				return true;
 			} else {
 				return false;
@@ -169,9 +178,9 @@ public class InMemoryPersistenceDelegate implements PersistenceDelegate {
 		}
 
 		public void addColumn(String columnName, Object value) {
-			details.put(columnName, value);			
-		}		
-		
+			details.put(columnName, value);                                            
+		}                             
+
 		public List<Object> getValuesAsList() {
 			return new ArrayList<Object>(details.values());
 		}

@@ -15,17 +15,17 @@ svn:wc:ra_dav:version-url
 V 63
 /svn/repository/!svn/ver/73/booklibrary/WebContent/deckView.jpg
 END
-addbooks.xhtml
-K 25
-svn:wc:ra_dav:version-url
-V 65
-/svn/repository/!svn/ver/74/booklibrary/WebContent/addbooks.xhtml
-END
 booklist.xhtml
 K 25
 svn:wc:ra_dav:version-url
 V 65
 /svn/repository/!svn/ver/74/booklibrary/WebContent/booklist.xhtml
+END
+addbooks.xhtml
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/repository/!svn/ver/76/booklibrary/WebContent/addbooks.xhtml
 END
 jquery.html
 K 25
@@ -39,11 +39,11 @@ svn:wc:ra_dav:version-url
 V 66
 /svn/repository/!svn/ver/73/booklibrary/WebContent/template2.xhtml
 END
-template3.xhtml
+authorlist.xhtml
 K 25
 svn:wc:ra_dav:version-url
-V 66
-/svn/repository/!svn/ver/73/booklibrary/WebContent/template3.xhtml
+V 67
+/svn/repository/!svn/ver/74/booklibrary/WebContent/authorlist.xhtml
 END
 addauthors.xhtml
 K 25
@@ -51,11 +51,11 @@ svn:wc:ra_dav:version-url
 V 67
 /svn/repository/!svn/ver/74/booklibrary/WebContent/addauthors.xhtml
 END
-authorlist.xhtml
+template3.xhtml
 K 25
 svn:wc:ra_dav:version-url
-V 67
-/svn/repository/!svn/ver/74/booklibrary/WebContent/authorlist.xhtml
+V 66
+/svn/repository/!svn/ver/73/booklibrary/WebContent/template3.xhtml
 END
 test2.xhtml
 K 25
@@ -63,11 +63,11 @@ svn:wc:ra_dav:version-url
 V 62
 /svn/repository/!svn/ver/73/booklibrary/WebContent/test2.xhtml
 END
-toolbar.xhtml
+ addbookold.xhtml
 K 25
 svn:wc:ra_dav:version-url
-V 64
-/svn/repository/!svn/ver/74/booklibrary/WebContent/toolbar.xhtml
+V 70
+/svn/repository/!svn/ver/74/booklibrary/WebContent/%20addbookold.xhtml
 END
 test3.xhtml
 K 25
@@ -75,11 +75,11 @@ svn:wc:ra_dav:version-url
 V 62
 /svn/repository/!svn/ver/73/booklibrary/WebContent/test3.xhtml
 END
- addbookold.xhtml
+toolbar.xhtml
 K 25
 svn:wc:ra_dav:version-url
-V 70
-/svn/repository/!svn/ver/74/booklibrary/WebContent/%20addbookold.xhtml
+V 64
+/svn/repository/!svn/ver/74/booklibrary/WebContent/toolbar.xhtml
 END
 addbook.xhtml
 K 25

@@ -1,6 +1,7 @@
 package com.logansrings.booklibrary.bean;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.faces.model.SelectItem;
@@ -8,18 +9,18 @@ import javax.faces.model.SelectItem;
 import com.logansrings.booklibrary.domain.Author;
 import com.logansrings.booklibrary.domain.Book;
 import com.logansrings.booklibrary.domain.ObjectFactory;
+import com.logansrings.booklibrary.util.SelectItemLabelComparator;
 
 public class BookBean {
 	private Long id;
 	private String title;
-	private String authorFirstName;
-	private String authorLastName;
-	private Long authorId;
-	private Long selectedAuthorId;
+	private AuthorBean authorBean;
 	private boolean markedForDeletion;
 	private boolean markedForAddition;
 
-	public BookBean() {}
+	public BookBean() {
+		this("", "", "");
+	}
 
 	public BookBean(String title, String authorFirstName, String authorLastName) {
 		this(null, title, null, authorFirstName, authorLastName);
@@ -30,9 +31,7 @@ public class BookBean {
 			Long id, String title, Long authorId, String authorFirstName, String authorLastName) {
 		this.id = id;
 		this.title = title;
-		this.authorId = authorId;
-		this.authorFirstName = authorFirstName;
-		this.authorLastName = authorLastName;
+		authorBean = new AuthorBean(authorId, authorFirstName, authorLastName);
 	}
 
 	public void setTitle(String title) {
@@ -44,14 +43,14 @@ public class BookBean {
 	}
 
 	public String getAuthorName() {
-		return authorFirstName + " " + authorLastName;
+		return authorBean.getAuthorName();
 	}
 	public String getAuthorFirstName() {
-		return authorFirstName;
+		return authorBean.getFirstName();
 	}
 
 	public String getAuthorLastName() {
-		return authorLastName;
+		return authorBean.getLastName();
 	}
 
 	public boolean isMarkedForDeletion() {
@@ -76,32 +75,37 @@ public class BookBean {
 
 	public String addBook() {
 		System.out.println("In BookBean.addBook()");
+		ObjectFactory.createBook(title, getAuthorId());
+//		new Book(title, authorBean.getAuthor());
+		clear();
 		return null;
 	}
 	
-	public void setSelectedAuthorId(Object value) {
-		selectedAuthorId = (Long) value;
-		System.out.println("In BookBean.setSelectedAuthorId()");
+	private void clear() {
+		title = "";
 	}
 
+	public void setAuthorId(Long id) {
+		authorBean.setAuthorId((Long) id);
+		System.out.println("In BookBean.setAuthorId()");
+	}
+	public Long getAuthorId() {
+		return authorBean.getAuthorId();
+	}
+
+
+	public List<SelectItem> getSortedSelectBooks() {
+		List<SelectItem> selectBooks = getSelectBooks();
+		Collections.sort(selectBooks, new SelectItemLabelComparator());
+		return selectBooks;
+	}
 	public List<SelectItem> getSelectBooks() {
 		List<SelectItem> selectBooks = new ArrayList<SelectItem>();
 		for (BookBean bookBean : getBooks()) {
-			selectBooks.add(new SelectItem(bookBean.getAuthorId(), bookBean.getAuthorName()));
+			selectBooks.add(new SelectItem(bookBean.id, bookBean.getTitle()));
 		}
 		return selectBooks;
 	}
 
-	public Object getAuthorId() {
-		return authorId;
-	}
-
-	public Long getSelectedAuthorId() {
-		return selectedAuthorId;
-	}
-
-	public void setSelectedAuthorId(Long selectedAuthorId) {
-		this.selectedAuthorId = selectedAuthorId;
-	}
 
 }

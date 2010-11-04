@@ -7,7 +7,7 @@ Author.java
 K 25
 svn:wc:ra_dav:version-url
 V 90
-/svn/repository/!svn/ver/74/booklibrary/src/com/logansrings/booklibrary/domain/Author.java
+/svn/repository/!svn/ver/76/booklibrary/src/com/logansrings/booklibrary/domain/Author.java
 END
 Library.java
 K 25
@@ -37,5 +37,5 @@ ObjectFactory.java
 K 25
 svn:wc:ra_dav:version-url
 V 97
-/svn/repository/!svn/ver/74/booklibrary/src/com/logansrings/booklibrary/domain/ObjectFactory.java
+/svn/repository/!svn/ver/76/booklibrary/src/com/logansrings/booklibrary/domain/ObjectFactory.java
 END

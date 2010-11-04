@@ -20,29 +20,30 @@
 				</f:facet>
 				<h:message for="booklistForm" errorClass="error"
 					showSummary="true" />
-				<h:dataTable value="#{bookbean.books}" var="book"
+				<rich:datascroller align="left" for="bookTable" maxPages="10" />
+				<rich:dataTable id="bookTable" value="#{bookbean.books}" var="book"
 					headerClass="dataTableHeader" styleClass="dataTable"
 					rowClasses="dataTableOddRow,dataTableEvenRow"
-					cellspacing="5" cellpadding="5">
-					<h:column>
+					cellspacing="5" cellpadding="5" rows="10" sortMode="single">
+					<rich:column id="title" sortBy="#{book.title}" sortOrder="ASCENDING">
 						<f:facet name="header">
 							<h:outputText value="#{msgs.title}" />
 						</f:facet>
 						<h:outputText value="#{book.title}" />
-					</h:column>
-					<h:column>
+					</rich:column>
+					<rich:column id="firstname">
 						<f:facet name="header">
 							<h:outputText value="#{msgs.authorFirstName}" />
 						</f:facet>
 						<h:outputText value="#{book.authorFirstName}" />
-					</h:column>
-					<h:column>
+					</rich:column>
+					<rich:column id="lastname">
 						<f:facet name="header">
 							<h:outputText value="#{msgs.authorLastName}" />
 						</f:facet>
 						<h:outputText value="#{book.authorLastName}" />
-					</h:column>
-				</h:dataTable>
+					</rich:column>
+				</rich:dataTable>
 			</rich:panel>
 		</h:form>
 	</ui:define>

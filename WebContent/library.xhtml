@@ -19,38 +19,39 @@
 
 				<h:message for="mylibraryform" errorClass="error" showSummary="true" />
 				<br />
-				<h:dataTable value="#{mainbean.bookBeans}" var="book"
+				<rich:datascroller align="left" for="librarytable" maxPages="10" />
+				<rich:dataTable id="librarytable" value="#{mainbean.bookBeans}" var="book"
 					headerClass="dataTableHeader" styleClass="dataTable"
 					rowClasses="dataTableOddRow,dataTableEvenRow"
-					cellspacing="5" cellpadding="5">
-					<h:column>
+					cellspacing="5" cellpadding="5" rows="10"  sortMode="single">
+					<rich:column id="markedfordeletion">
 						<f:facet name="header">
 							<h:outputText value="#{msgs.delete}" />
 						</f:facet>
 						<h:selectBooleanCheckbox value="#{book.markedForDeletion}">
 							<a4j:support event="onclick" reRender="mainButtons" />
 						</h:selectBooleanCheckbox>
-					</h:column>
-					<h:column>
+					</rich:column>
+					<rich:column id="title" sortBy="#{book.title}" sortOrder="ASCENDING">
 						<f:facet name="header">
 							<h:outputText value="#{msgs.title}" />
 						</f:facet>
 						<h:commandLink value="#{book.title}" action="#{mainbean.edit}" />
-					</h:column>
-					<h:column>
+					</rich:column>
+					<rich:column id="author">
 						<f:facet name="header">
 							<h:outputText value="#{msgs.author}" />
 						</f:facet>
 						<h:outputText value="#{book.authorName}" />
-					</h:column>
-				</h:dataTable>
+					</rich:column>
+				</rich:dataTable>
 				<br />
 				<h:panelGrid id="mainButtons" columns="2">
-					<h:commandButton id="updateBooksButton" value="#{msgs.updatebooks}"
-						action="#{mainbean.updateBooks}"
-						rendered="#{mainbean.haveBooksToUpdate}" />
-					<h:commandButton value="#{msgs.addABook}"
-						action="#{mainbean.addBooks}" />
+					<h:commandButton id="deleteBooksButton" value="#{msgs.deletebooks}"
+						action="#{mainbean.deleteBooks}"
+						rendered="#{mainbean.haveBooksToDelete}" />
+					<h:commandButton value="#{msgs.addBookToLibrary}"
+						action="addbooktolibrary" />
 				</h:panelGrid>
 			</rich:panel>
 		</h:form>

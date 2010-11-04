@@ -20,9 +20,17 @@ public class ObjectFactory {
 		return bookBeans;
 	}
 
-	public static BookBean createBookBean(Book book) {
+	private static BookBean createBookBean(Book book) {
 		return new BookBean(book.getId(), book.getTitle(), 
 				book.getAuthorId(), book.getAuthorFirstName(), book.getAuthorLastName());
+	}
+
+	public static BookBean createBookBean(Long bookId) {
+		return createBookBean(createBook(bookId));
+	}
+
+	public static Book createBook(Long bookId) {
+		return new Book(bookId);
 	}
 
 	public static List<Book> createBooks(List<BookBean> bookBeans) {
@@ -33,10 +41,14 @@ public class ObjectFactory {
 		return books;
 	}
 
-	private static Book createBook(BookBean bookBean) {
+	public static Book createBook(BookBean bookBean) {
 		return new Book(bookBean.getTitle(), 
 				new Author(bookBean.getAuthorFirstName(), 
 						bookBean.getAuthorLastName()));
+	}
+
+	public static Book createBook(String title, Long authorId) {
+		return new Book(title, new Author(authorId));
 	}
 
 	public static List<AuthorBean> createAuthorBeans(List<Author> authors) {
@@ -48,7 +60,7 @@ public class ObjectFactory {
 	}
 
 	private static AuthorBean createAuthorBean(Author author) {
-		return new AuthorBean(author.getFirstName(), author.getLastName());
+		return new AuthorBean(author.getId(), author.getFirstName(), author.getLastName());
 	}
 
 

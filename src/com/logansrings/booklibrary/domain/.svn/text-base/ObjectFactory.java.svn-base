@@ -48,7 +48,7 @@ public class ObjectFactory {
 	}
 
 	private static AuthorBean createAuthorBean(Author author) {
-		return new AuthorBean(author.getFirstName(), author.getLastName());
+		return new AuthorBean(author.getId(), author.getFirstName(), author.getLastName());
 	}
 
 
