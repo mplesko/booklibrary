@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:rich="http://richfaces.org/rich">
+
+<ui:composition template="/template3.xhtml">
+	<ui:define name="title">
+		addbook
+	</ui:define>
+	<ui:define name="content">
+		<h:form id="addbookForm">
+			<rich:panel>
+				<f:facet name="header">
+					<h:outputText value="Add Book Form" />
+				</f:facet>
+				<h:message for="addbookForm" errorClass="error" showSummary="true" />
+
+				<h:panelGrid columns="3">
+					<h:outputText value="#{msgs.title}" />
+					<h:inputText id="title" value="#{mainbean.addBookTitle}"
+						required="true" />
+					<h:message for="title" errorClass="error" />
+					<h:outputText value="#{msgs.authorFirstName}" />
+					<h:inputText id="authorFirstName"
+						value="#{mainbean.addAuthorFirstName}" required="true" />
+					<h:message for="authorFirstName" errorClass="error" />
+					<h:outputText value="#{msgs.authorLastName}" />
+					<h:inputText id="authorLastName"
+						value="#{mainbean.addAuthorLastName}" required="true" />
+					<h:message for="authorLastName" errorClass="error" />
+					<h:outputText value="" />
+					<h:commandButton value="#{msgs.addBook}"
+						action="#{mainbean.addBook}" />
+					<h:outputText value="" />
+					<h:commandButton value="#{msgs.cancel}" action="#{mainbean.cancel}"
+						immediate="true" />
+				</h:panelGrid>
+			</rich:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>
