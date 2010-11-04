@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich">
+
+<f:view>
+	<head>
+	<link href="css/styles.css" rel="stylesheet" type="text/css" />
+	<title>template</title>
+	</head>
+	<body>
+	<h:form id="templateForm">
+		<h1><ui:insert name="title">Default Title</ui:insert></h1>
+		<ui:include src="/toolbar.xhtml" />
+		<rich:layout>
+			<rich:layoutPanel position="left" 
+				style="background-color:#4682B4; border:1px solid">
+				<ui:include src="/navbar.xhtml" />
+			</rich:layoutPanel>
+			<rich:layoutPanel position="center" 
+				style="background-color:#8FBC8F; border:1px solid">
+				<ui:insert name="centerContent">Default Content Goes Here</ui:insert>
+			</rich:layoutPanel>
+			<rich:layoutPanel position="right" 
+				style="background-color:#2FBC8F; border:1px solid">
+				<ui:insert name="rightContent"></ui:insert>
+			</rich:layoutPanel>
+		</rich:layout>
+
+	</h:form>
+	</body>
+</f:view>
+</html>

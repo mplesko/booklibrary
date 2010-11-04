@@ -22,8 +22,8 @@
 					<h:inputText id="title" value="#{bookbean.title}" required="true" />
 					<h:message for="title" errorClass="error" />
 					<h:outputText value="#{msgs.author}"/>
-					<h:selectOneMenu value="#{bookbean.authorId}" id="author">
-						<f:selectItems value="#{authorbean.sortedSelectAuthors}" />
+					<h:selectOneMenu value="#{bookbean.selectedAuthorId}" id="author">
+						<f:selectItems value="#{bookbean.selectBooks}" />
 					</h:selectOneMenu>
 					<h:outputText />
 					<h:outputText />

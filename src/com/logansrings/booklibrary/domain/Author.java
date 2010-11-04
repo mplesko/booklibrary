@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 
 import com.logansrings.booklibrary.app.ApplicationContext;
 import com.logansrings.booklibrary.app.ApplicationUtilities;
+import com.logansrings.booklibrary.domain.Library.UserBook;
 import com.logansrings.booklibrary.persistence.Persistable;
 import com.logansrings.booklibrary.persistence.PersistenceDelegate;
 import com.logansrings.booklibrary.util.UniqueId;

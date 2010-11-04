@@ -20,24 +20,23 @@
 				</f:facet>
 				<h:message for="authorlistForm" errorClass="error"
 					showSummary="true" />
-				<rich:datascroller align="left" for="authorTable" maxPages="10" />
-				<rich:dataTable id="authorTable" value="#{authorbean.authors}"
-					var="author" headerClass="dataTableHeader" styleClass="dataTable"
-					rowClasses="dataTableOddRow,dataTableEvenRow" cellspacing="5"
-					cellpadding="5" rows="10" sortMode="single">
-					<rich:column id="firstname">
+				<h:dataTable value="#{authorbean.authors}" var="author"
+					headerClass="dataTableHeader" styleClass="dataTable"
+					rowClasses="dataTableOddRow,dataTableEvenRow"
+					cellspacing="5" cellpadding="5">
+					<h:column>
 						<f:facet name="header">
 							<h:outputText value="#{msgs.authorFirstName}" />
 						</f:facet>
 						<h:outputText value="#{author.firstName}" />
-					</rich:column>
-					<rich:column id="lastname" sortBy="#{author.lastName}" sortOrder="ASCENDING">
+					</h:column>
+					<h:column>
 						<f:facet name="header">
 							<h:outputText value="#{msgs.authorLastName}" />
 						</f:facet>
 						<h:outputText value="#{author.lastName}" />
-					</rich:column>
-				</rich:dataTable>
+					</h:column>
+				</h:dataTable>
 			</rich:panel>
 		</h:form>
 	</ui:define>
