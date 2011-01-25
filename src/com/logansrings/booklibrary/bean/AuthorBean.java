@@ -9,6 +9,7 @@ import javax.faces.model.SelectItem;
 import com.logansrings.booklibrary.domain.Author;
 import com.logansrings.booklibrary.domain.ObjectFactory;
 import com.logansrings.booklibrary.util.SelectItemLabelComparator;
+import com.logansrings.booklibrary.webservice.dto.AuthorDto;
 public class AuthorBean {
 
 	private Long id;
@@ -16,7 +17,7 @@ public class AuthorBean {
 	private String lastName;
 
 	public AuthorBean() {}
-	
+
 	public AuthorBean(Long id, String firstName, String lastName) {
 		this(firstName, lastName);
 		this.id = id;
@@ -28,7 +29,7 @@ public class AuthorBean {
 	}
 
 	public String addAuthor() {
-//		Author author = new Author(firstName, lastName);
+		//		Author author = new Author(firstName, lastName);
 		new Author(firstName, lastName);
 		clear();
 		return null;
@@ -65,7 +66,7 @@ public class AuthorBean {
 	public Author getAuthor() {
 		return new Author(id);
 	}
-	
+
 	public List<SelectItem> getSortedSelectAuthors() {
 		List<SelectItem> selectAuthors = getSelectAuthors();
 		Collections.sort(selectAuthors, new SelectItemLabelComparator());
@@ -75,7 +76,7 @@ public class AuthorBean {
 		List<SelectItem> selectAuthors = new ArrayList<SelectItem>();
 		for (AuthorBean authorBean : getAuthors()) {
 			selectAuthors.add(new SelectItem(authorBean.id, authorBean.getAuthorLastNameFirstName()));
-//			selectAuthors.add(new SelectItem(authorBean.getAuthorName(), authorBean.getAuthorName()));
+			//			selectAuthors.add(new SelectItem(authorBean.getAuthorName(), authorBean.getAuthorName()));
 		}
 		return selectAuthors;
 	}
@@ -97,4 +98,11 @@ public class AuthorBean {
 		return id;
 	}
 
+	public AuthorDto getDto() {
+		return new AuthorDto(firstName, lastName);
+	}
+
+	public List<AuthorDto> getDtos() {
+		return ObjectFactory.createAuthorDtos(getAuthors());
+	}
 }

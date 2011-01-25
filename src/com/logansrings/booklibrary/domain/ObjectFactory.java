@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.logansrings.booklibrary.bean.AuthorBean;
 import com.logansrings.booklibrary.bean.BookBean;
+import com.logansrings.booklibrary.webservice.dto.AuthorDto;
 
 public class ObjectFactory {
 
@@ -63,5 +64,11 @@ public class ObjectFactory {
 		return new AuthorBean(author.getId(), author.getFirstName(), author.getLastName());
 	}
 
-
+    public static List<AuthorDto> createAuthorDtos(List<AuthorBean> authorBeans) {
+        List<AuthorDto> authorDtos = new ArrayList<AuthorDto>();
+        for (AuthorBean authorBean : authorBeans) {
+                        authorDtos.add(authorBean.getDto());
+        }
+        return authorDtos;
+}
 }

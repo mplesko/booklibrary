@@ -3,7 +3,6 @@
 	<name>booklibrary</name>
 	<comment></comment>
 	<projects>
-		<project>booklibraryservice</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
