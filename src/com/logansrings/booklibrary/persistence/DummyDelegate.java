@@ -4,11 +4,11 @@ import java.util.List;
 
 public class DummyDelegate implements PersistenceDelegate {
 	public boolean persistReturnValue;
-	public List<Object> findOneReturnValue;
+	public Persistable findOneReturnValue;
 	public List<List<Object>> findAnyReturnValue;
 	public boolean existsReturnValue;
 
-	public void setFindOneReturnValue(List<Object> findOneReturnValue) {
+	public void setFindOneReturnValue(Persistable findOneReturnValue) {
 		this.findOneReturnValue = findOneReturnValue;
 	}
 
@@ -20,7 +20,7 @@ public class DummyDelegate implements PersistenceDelegate {
 		this.persistReturnValue = persistReturnValue;
 	}
 
-	public List<Object> findOne(Persistable persistable) {
+	public Persistable findOne(Persistable persistable) {
 		return findOneReturnValue;
 	}
 

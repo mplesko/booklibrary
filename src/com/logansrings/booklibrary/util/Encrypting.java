@@ -31,13 +31,17 @@ public class Encrypting {
 			messageDigest.update(aString.getBytes());
 			byte[] messageDigestBytes = messageDigest.digest();
 
-			encryptedString = (new BASE64Encoder()).encode(messageDigestBytes); 
+			encryptedString = (getEncoder()).encode(messageDigestBytes); 
 			return encryptedString;
 		}
 		catch (Exception e){
 			e.printStackTrace();
 			return null;
 		}
+	}
+
+	private BASE64Encoder getEncoder() {
+		return new BASE64Encoder();
 	}
 
 	protected MessageDigest getMessageDigest() throws NoSuchAlgorithmException {

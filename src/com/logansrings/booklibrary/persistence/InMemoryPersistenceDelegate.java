@@ -39,7 +39,7 @@ public class InMemoryPersistenceDelegate implements PersistenceDelegate {
 		return true;
 	}
 
-	public List<Object> findOne(Persistable persistable) {
+	public Persistable findOne(Persistable persistable) {
 		for (InMemoryObject inMemoryObject :
 			getInMemoryObjectsForTable(persistable.getTableName())) {
 
@@ -55,10 +55,11 @@ public class InMemoryPersistenceDelegate implements PersistenceDelegate {
 				}
 			}
 			if (found) {
-				return inMemoryObject.getValuesAsList();
+				return persistable.newFromDBColumns(
+						inMemoryObject.getValuesAsList());
 			}                                                             
 		}
-		return new ArrayList<Object>();                              
+		return null;                              
 	}
 
 	private List<InMemoryObject> getInMemoryObjectsForTable(String tableName) {
@@ -73,7 +74,7 @@ public class InMemoryPersistenceDelegate implements PersistenceDelegate {
 
 	@Override
 	public boolean exists(Persistable persistable) {
-		if (findOne(persistable).isEmpty()) {
+		if (findOne(persistable) == null) {
 			return false;
 		} else {
 			return true;

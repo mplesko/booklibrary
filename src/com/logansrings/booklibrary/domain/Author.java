@@ -22,9 +22,11 @@ public class Author implements Persistable {
 	private static PersistenceDelegate persistenceDelegate = null;
 	
 	public static void main(String[] args) throws ServletException {
-//		new ApplicationContext().init();
-//		Author author = new Author("Fred", "Brooks");
-		System.out.println(Author.getTestAuthor().toString());
+		new ApplicationContext().init();
+		Author author = new Author("Fred", "Brooks");
+//		author.persistAuthor();
+//		System.out.println(Author.getTestAuthor().toString());
+		author.findById();
 	}
 	
 	private Author() {}
@@ -50,25 +52,24 @@ public class Author implements Persistable {
 
 	private void findById() {
 		persistableMode = "findId";
-		List<Object> list = getPersistenceDelegate().findOne(this);
-		if (list.size() == 0) {
+		Persistable persistable = getPersistenceDelegate().findOne(this);
+		if (persistable == null) {
 			valid = false;
-			// set Author to nullAuthor
 		} else {
 			valid = true;
-			firstName = (String) list.get(1);
-			lastName = (String)list.get(2);
+			firstName = ((Author)persistable).getFirstName();
+			lastName = ((Author)persistable).getLastName();
 		}
 	}
 
 	private void findByName() {
 		persistableMode = "findName";
-		List<Object> list = getPersistenceDelegate().findOne(this);
-		if (list.size() == 0) {
+		Persistable persistable = getPersistenceDelegate().findOne(this);
+		if (persistable == null) {
 			valid = false;
 		} else {
 			valid = true;
-			id = (Long)list.get(0);
+			id = persistable.getId();
 		}
 	}
 	
@@ -150,7 +151,7 @@ public class Author implements Persistable {
 		id = UniqueId.getId();
 	}
 
-	Long getId() {
+	public Long getId() {
 		return id;
 	}
 	
@@ -177,4 +178,20 @@ public class Author implements Persistable {
 		}
 		return authors;
 	}
+	
+	public Author newFromDBColumns(List<Object> objectList) {
+		Author author = new Author();
+		if (objectList.size() == 3) {
+			author.id = (Long) objectList.get(0);
+			author.firstName = (String) objectList.get(1);
+			author.lastName = (String) objectList.get(2);
+			author.valid = true;
+		} else {
+			author.valid = false;
+		}
+
+		return author;
+	}
+
+
 }

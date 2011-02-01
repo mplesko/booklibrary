@@ -76,8 +76,7 @@ public class DatabaseDelegate implements PersistenceDelegate {
 		return found;
 	}
 
-	public List<Object> findOne(Persistable persistable) {
-		List<Object> list = new ArrayList<Object>();
+	public Persistable findOne(Persistable persistable) {
 		try {
 			Connection conn = getConnection();
 			try {
@@ -111,9 +110,11 @@ public class DatabaseDelegate implements PersistenceDelegate {
 								" actual:" + columnCount, 
 								Type.TECHNICAL, Severity.ERROR);   
 					} else {
+						List<Object> list = new ArrayList<Object>();
 						for (int i = 1; i <= columnCount; i++) {
 							list.add(resultSet.getObject(i));
-						}				
+						}
+						return persistable.newFromDBColumns(list);
 					}
 				}
 			} finally {
@@ -125,7 +126,7 @@ public class DatabaseDelegate implements PersistenceDelegate {
 					persistable.toString() + " failed", e.getMessage(), 
 					Type.TECHNICAL, Severity.ERROR);   
 		}
-		return list;
+		return null;
 	}
 
 	public List<List<Object>> findAny(Persistable persistable) {

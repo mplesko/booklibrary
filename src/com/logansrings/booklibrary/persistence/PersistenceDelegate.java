@@ -15,8 +15,15 @@ public interface PersistenceDelegate {
 	 * @return a list of objects that are the column values of the peristable
 	 * or an empty list if none found.
 	 */
-	List<Object> findOne(Persistable persistable);
+//	List<Object> findOne(Persistable persistable);
 
+	/**
+	 * @param persistable
+	 * @return a persistable that's a match for the persistable argument 
+	 * or null if not found.
+	 */
+	Persistable findOne(Persistable persistable);
+	
 	/**
 	 * @param persistable
 	 * @return a list of objects that are the column values of any peristable
