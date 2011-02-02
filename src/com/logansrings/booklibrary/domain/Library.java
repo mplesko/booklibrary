@@ -150,6 +150,18 @@ public class Library {
 					"Library", user.toString(), book.toString());
 		}
 
+		@Override
+		public Long getId() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public Persistable newFromDBColumns(List<Object> objectList) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
 	}
 
 }

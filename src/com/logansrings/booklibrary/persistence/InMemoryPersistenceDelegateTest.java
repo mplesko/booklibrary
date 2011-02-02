@@ -58,32 +58,29 @@ public class InMemoryPersistenceDelegateTest extends TestCase {
 		MyPersistable myPersistable = new MyPersistable();
 		myPersistable.id = 1L;
 		myPersistable.persistableMode = "findId";
-		List<Object> results = persistenceDelegate.findOne(myPersistable);
-		assertEquals(2, results.size());
-		assertTrue(1L == (Long)results.get(0));
-		assertTrue(((String)results.get(1)).startsWith("name1"));
+		Persistable persistable = persistenceDelegate.findOne(myPersistable);
+		assertTrue(1L == persistable.getId());
+		assertTrue(((MyPersistable)persistable).name.startsWith("name1"));
 
 		myPersistable = new MyPersistable();
 		myPersistable.id = 1L;
 		myPersistable.name = "name1a";
-		results = persistenceDelegate.findOne(myPersistable);
-		assertEquals(2, results.size());
-		assertTrue(1L == (Long)results.get(0));
-		assertEquals("name1a", (String)results.get(1));
+		persistable = persistenceDelegate.findOne(myPersistable);
+		assertTrue(1L == persistable.getId());
+		assertEquals("name1a", ((MyPersistable)persistable).name);
 
 		myPersistable = new MyPersistable();
 		myPersistable.name = "name2a";
 		myPersistable.persistableMode = "findName";
-		results = persistenceDelegate.findOne(myPersistable);
-		assertEquals(2, results.size());
-		assertTrue(2L == (Long)results.get(0));
-		assertEquals("name2a", (String)results.get(1));
+		persistable = persistenceDelegate.findOne(myPersistable);
+		assertTrue(2L == persistable.getId());
+		assertEquals("name2a", ((MyPersistable)persistable).name);
 
 		myPersistable = new MyPersistable();
 		myPersistable.id = 3L;
 		myPersistable.persistableMode = "findId";
-		results = persistenceDelegate.findOne(myPersistable);
-		assertEquals(0, results.size());
+		persistable = persistenceDelegate.findOne(myPersistable);
+		assertNull(persistable);
 	}
 
 	public void testFindAny() {
@@ -164,23 +161,23 @@ public class InMemoryPersistenceDelegateTest extends TestCase {
 
 		private void findByName() {
 			persistableMode = "findName";
-			List<Object> list = persistenceDelegate.findOne(this);
-			if (list.size() == 0) {
+			Persistable persistable = persistenceDelegate.findOne(this);
+			if (persistable == null) {
 				valid = false;
 			} else {
 				valid = true;
-				id = (Long)list.get(0);
+				id = persistable.getId();
 			}
 		}
 
 		private void findById() {
 			persistableMode = "findId";
-			List<Object> list = persistenceDelegate.findOne(this);
-			if (list.size() == 0) {
+			Persistable persistable = persistenceDelegate.findOne(this);
+			if (persistable == null) {
 				valid = false;
 			} else {
 				valid = true;
-				name = (String)list.get(1);
+				name = ((MyPersistable)persistable).name;
 			}
 		}
 
@@ -214,6 +211,21 @@ public class InMemoryPersistenceDelegateTest extends TestCase {
 		@Override
 		public String getTableName() {
 			return "test";
+		}
+
+		@Override
+		public Long getId() {
+			return id;
+		}
+
+		@Override
+		public Persistable newFromDBColumns(List<Object> objectList) {
+			MyPersistable myPersistable = new MyPersistable();
+			if (objectList.size() == 2) {
+				myPersistable.id = (Long) objectList.get(0);
+				myPersistable.name = (String)objectList.get(1);
+			}
+			return myPersistable;
 		}
 
 	}

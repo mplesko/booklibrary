@@ -185,11 +185,7 @@ public class Author implements Persistable {
 			author.id = (Long) objectList.get(0);
 			author.firstName = (String) objectList.get(1);
 			author.lastName = (String) objectList.get(2);
-			author.valid = true;
-		} else {
-			author.valid = false;
 		}
-
 		return author;
 	}
 

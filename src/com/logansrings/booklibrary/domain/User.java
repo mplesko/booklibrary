@@ -98,14 +98,14 @@ public class User implements Persistable {
 
 	private void findAccount() {
 		persistableMode = "find";
-		List<Object> list = getPersistenceDelegate().findOne(this);
-		if (list.size() == 0) {
+		Persistable persistable = getPersistenceDelegate().findOne(this);
+		if (persistable == null) {
 			valid = false;
 			context = "user not found";
 			return;
 		}
-		id = (Long)list.get(0);
-		encryptedPassword = (String)list.get(2);
+		id = persistable.getId();
+		encryptedPassword = ((User)persistable).encryptedPassword;
 
 		String tempEncryptedPassword = getEncrypting().encrypt(password);
 		if (encryptedPassword.equals(tempEncryptedPassword)) {
@@ -147,7 +147,7 @@ public class User implements Persistable {
 		return context;
 	}
 
-	Long getId() {
+	public Long getId() {
 		return id;
 	}
 
@@ -212,6 +212,16 @@ public class User implements Persistable {
 		} else {
 			return persistenceDelegate;
 		}		
+	}
+
+	@Override
+	public Persistable newFromDBColumns(List<Object> objectList) {
+		User user = new User();
+		if (objectList.size() == 3) {
+			id = (Long)objectList.get(0);
+			encryptedPassword = (String)objectList.get(2);
+		}
+		return user;
 	}
 
 }
