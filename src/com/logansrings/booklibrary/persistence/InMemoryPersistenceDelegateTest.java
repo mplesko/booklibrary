@@ -228,6 +228,12 @@ public class InMemoryPersistenceDelegateTest extends TestCase {
 			return myPersistable;
 		}
 
+		@Override
+		public void setId(Long id) {
+			// TODO Auto-generated method stub
+			
+		}
+
 	}
 
 }

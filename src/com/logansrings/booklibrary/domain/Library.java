@@ -15,8 +15,8 @@ public class Library {
 	private static PersistenceDelegate persistenceDelegate = null;
 
 	public static void main(String[] args) {
-//		User user = new User("x", "x", UserType.EXISTING);
-//		Library library = new Library(user);
+		//		User user = new User("x", "x", UserType.EXISTING);
+		//		Library library = new Library(user);
 	}
 
 	public Library(User user) {
@@ -162,6 +162,10 @@ public class Library {
 			return null;
 		}
 
+		@Override
+		public void setId(Long id) {
+			//			this.id = id;		
+		}
 	}
 
 }

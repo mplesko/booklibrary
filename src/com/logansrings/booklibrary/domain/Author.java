@@ -3,7 +3,15 @@ package com.logansrings.booklibrary.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.servlet.ServletException;
+
+import org.hibernate.annotations.GenericGenerator;
 
 import com.logansrings.booklibrary.app.ApplicationContext;
 import com.logansrings.booklibrary.app.ApplicationUtilities;
@@ -11,14 +19,27 @@ import com.logansrings.booklibrary.persistence.Persistable;
 import com.logansrings.booklibrary.persistence.PersistenceDelegate;
 import com.logansrings.booklibrary.util.UniqueId;
 
+@Entity
+@Table( name = "author" )
 public class Author implements Persistable {
 
-	private String persistableMode;
+	@Id
+	@Column(name = "id")
+	@GeneratedValue(generator="increment")
+	@GenericGenerator(name="increment", strategy = "increment")
 	private Long id;
+	@Column(name = "firstName")
 	private String firstName;
+	@Column(name = "lastName")
 	private String lastName;
+
+	@Transient
+	private String persistableMode;
+	@Transient
 	private boolean valid;
+	@Transient
 	private String context = "";
+	@Transient
 	private static PersistenceDelegate persistenceDelegate = null;
 	
 	public static void main(String[] args) throws ServletException {
@@ -75,7 +96,6 @@ public class Author implements Persistable {
 	
 	public void persistAuthor() {
 		persistableMode = "create";
-		updateId();			
 		if (getPersistenceDelegate().persist(this)) {
 			// ok, expected
 		} else {
@@ -147,10 +167,6 @@ public class Author implements Persistable {
 		}		
 	}
 
-	private void updateId() {
-		id = UniqueId.getId();
-	}
-
 	public Long getId() {
 		return id;
 	}
@@ -187,6 +203,11 @@ public class Author implements Persistable {
 			author.lastName = (String) objectList.get(2);
 		}
 		return author;
+	}
+
+	@Override
+	public void setId(Long id) {
+		this.id = id;		
 	}
 
 

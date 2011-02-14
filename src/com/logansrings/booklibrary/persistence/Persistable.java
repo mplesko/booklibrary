@@ -5,6 +5,7 @@ import java.util.List;
 public interface Persistable {
 
 	Long getId();
+	void setId(Long id);
 	String getTableName();
 	String[] getColumnNames();
 	Object[] getColumnValues();

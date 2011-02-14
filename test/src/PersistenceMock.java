@@ -8,10 +8,10 @@ import com.logansrings.booklibrary.persistence.PersistenceDelegate;
 public class PersistenceMock implements PersistenceDelegate {
 
 	boolean findOneCalled;
-	List<Object> findOneReturnValue;
+	Persistable findOneReturnValue;
 	
 	@Override
-	public List<Object> findOne(Persistable persistable) {
+	public Persistable findOne(Persistable persistable) {
 		findOneCalled = true;
 		return findOneReturnValue;
 	}

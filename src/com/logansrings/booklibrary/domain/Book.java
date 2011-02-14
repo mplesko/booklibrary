@@ -77,7 +77,6 @@ public class Book implements Persistable{
 
 	public void persistBook() {
 		persistableMode = "create";
-		updateId();			
 		if (getPersistenceDelegate().persist(this)) {
 			// ok, expected
 		} else {
@@ -163,10 +162,6 @@ public class Book implements Persistable{
 		return author.getLastName();
 	}
 	
-	private void updateId() {
-		id = UniqueId.getId();
-	}
-
 	public boolean isValid() {
 		return valid;
 	}
@@ -204,5 +199,9 @@ public class Book implements Persistable{
 			book.author = new Author(book.authorId);
 		}
 		return book;
+	}
+	@Override
+	public void setId(Long id) {
+		this.id = id;		
 	}
 }

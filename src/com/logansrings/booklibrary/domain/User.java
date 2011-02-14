@@ -82,7 +82,6 @@ public class User implements Persistable {
 
 	private void createAccount() {
 		if (updateEncryptedPassword()) {
-			updateId();			
 			persistableMode = "create";
 			if (getPersistenceDelegate().persist(this)) {
 				valid = true;
@@ -114,10 +113,6 @@ public class User implements Persistable {
 			valid = false;
 			context = "invalid user name or password";
 		}		
-	}
-
-	private void updateId() {
-		id = UniqueId.getId();
 	}
 
 	/**
@@ -222,6 +217,10 @@ public class User implements Persistable {
 			encryptedPassword = (String)objectList.get(2);
 		}
 		return user;
+	}
+	@Override
+	public void setId(Long id) {
+		this.id = id;		
 	}
 
 }
