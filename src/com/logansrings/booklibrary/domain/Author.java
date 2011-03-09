@@ -3,7 +3,15 @@ package com.logansrings.booklibrary.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.servlet.ServletException;
+
+import org.hibernate.annotations.GenericGenerator;
 
 import com.logansrings.booklibrary.app.ApplicationContext;
 import com.logansrings.booklibrary.app.ApplicationUtilities;
@@ -11,20 +19,35 @@ import com.logansrings.booklibrary.persistence.Persistable;
 import com.logansrings.booklibrary.persistence.PersistenceDelegate;
 import com.logansrings.booklibrary.util.UniqueId;
 
+@Entity
+@Table( name = "author" )
 public class Author implements Persistable {
 
-	private String persistableMode;
+	@Id
+	@Column(name = "id")
+	@GeneratedValue(generator="increment")
+	@GenericGenerator(name="increment", strategy = "increment")
 	private Long id;
+	@Column(name = "firstName")
 	private String firstName;
+	@Column(name = "lastName")
 	private String lastName;
+
+	@Transient
+	private String persistableMode;
+	@Transient
 	private boolean valid;
+	@Transient
 	private String context = "";
+	@Transient
 	private static PersistenceDelegate persistenceDelegate = null;
 	
 	public static void main(String[] args) throws ServletException {
-//		new ApplicationContext().init();
-//		Author author = new Author("Fred", "Brooks");
-		System.out.println(Author.getTestAuthor().toString());
+		new ApplicationContext().init();
+		Author author = new Author("Fred", "Brooks");
+//		author.persistAuthor();
+//		System.out.println(Author.getTestAuthor().toString());
+		author.findById();
 	}
 	
 	private Author() {}
@@ -73,7 +96,6 @@ public class Author implements Persistable {
 	
 	public void persistAuthor() {
 		persistableMode = "create";
-		updateId();			
 		if (getPersistenceDelegate().persist(this)) {
 			// ok, expected
 		} else {
@@ -145,6 +167,7 @@ public class Author implements Persistable {
 		}		
 	}
 
+<<<<<<< HEAD
 	private void updateId() {
 		id = UniqueId.getId();
 	}
@@ -154,6 +177,8 @@ public class Author implements Persistable {
 		this.id = id;		
 	}
 	
+=======
+>>>>>>> 808f988503fddcb65c6d1914df21508bf05e8c3e
 	public Long getId() {
 		return id;
 	}
@@ -180,7 +205,11 @@ public class Author implements Persistable {
 	
 	public Author newFromDBColumns(List<Object> objectList) {
 		Author author = new Author();
+<<<<<<< HEAD
 		if (objectList.size() == getColumnCount()) {
+=======
+		if (objectList.size() == 3) {
+>>>>>>> 808f988503fddcb65c6d1914df21508bf05e8c3e
 			author.id = (Long) objectList.get(0);
 			author.firstName = (String) objectList.get(1);
 			author.lastName = (String) objectList.get(2);
@@ -188,4 +217,13 @@ public class Author implements Persistable {
 		return author;
 	}
 
+<<<<<<< HEAD
+=======
+	@Override
+	public void setId(Long id) {
+		this.id = id;		
+	}
+
+
+>>>>>>> 808f988503fddcb65c6d1914df21508bf05e8c3e
 }

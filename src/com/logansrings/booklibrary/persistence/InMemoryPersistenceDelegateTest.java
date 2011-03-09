@@ -215,6 +215,7 @@ public class InMemoryPersistenceDelegateTest extends TestCase {
 		}
 
 		@Override
+<<<<<<< HEAD
 		public void setId(Long id) {
 			this.id = id;
 			
@@ -224,6 +225,21 @@ public class InMemoryPersistenceDelegateTest extends TestCase {
 		public Persistable newFromDBColumns(List<Object> objectList) {
 			// TODO Auto-generated method stub
 			return null;
+=======
+		public Persistable newFromDBColumns(List<Object> objectList) {
+			MyPersistable myPersistable = new MyPersistable();
+			if (objectList.size() == 2) {
+				myPersistable.id = (Long) objectList.get(0);
+				myPersistable.name = (String)objectList.get(1);
+			}
+			return myPersistable;
+		}
+
+		@Override
+		public void setId(Long id) {
+			// TODO Auto-generated method stub
+			
+>>>>>>> 808f988503fddcb65c6d1914df21508bf05e8c3e
 		}
 
 	}

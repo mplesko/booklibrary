@@ -159,7 +159,7 @@ public class Library {
 		public Persistable newFromDBColumns(List<Object> objectList) {
 			UserBook userBook = new UserBook(this.user, "");
 			if (objectList.size() == getColumnCount()) {
-				userBook.book = new Book((Long) objectList.get(1));
+				userBook.book = new Book((Long)objectList.get(1));
 			}
 			return userBook;
 		}
