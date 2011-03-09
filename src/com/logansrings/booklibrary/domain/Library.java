@@ -26,13 +26,12 @@ public class Library {
 
 	private void initializeBooks() {
 		UserBook userBook = new UserBook(user, "find");
-		List<List<Object>> findList = getPersistenceDelegate().findAny(userBook);
+		List<Persistable> findList = getPersistenceDelegate().findAny(userBook);
 		if (findList.size() == 0) {
 			return;
 		} else {
-			for (List<Object> objectList : findList) {
-				Long bookId = (Long) objectList.get(1);
-				books.add(new Book(bookId));
+			for (Persistable persistable : findList) {
+				books.add(((UserBook)persistable).book);
 			}
 		}
 	}
@@ -148,6 +147,26 @@ public class Library {
 		public String toString() {
 			return String.format("[%s] user:%s book:%s",
 					"Library", user.toString(), book.toString());
+		}
+
+		@Override
+		public Long getId() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public Persistable newFromDBColumns(List<Object> objectList) {
+			UserBook userBook = new UserBook(this.user, "");
+			if (objectList.size() == getColumnCount()) {
+				userBook.book = new Book((Long) objectList.get(1));
+			}
+			return userBook;
+		}
+
+		@Override
+		public void setId(Long id) {
+			//			this.id = id;		
 		}
 
 	}

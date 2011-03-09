@@ -8,10 +8,10 @@ import com.logansrings.booklibrary.persistence.PersistenceDelegate;
 public class PersistenceMock implements PersistenceDelegate {
 
 	boolean findOneCalled;
-	List<Object> findOneReturnValue;
+	Persistable findOneReturnValue;
 	
 	@Override
-	public List<Object> findOne(Persistable persistable) {
+	public Persistable findOne(Persistable persistable) {
 		findOneCalled = true;
 		return findOneReturnValue;
 	}
@@ -29,7 +29,7 @@ public class PersistenceMock implements PersistenceDelegate {
 	}
 
 	@Override
-	public List<List<Object>> findAny(Persistable persistable) {
+	public List<Persistable> findAny(Persistable persistable) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -41,7 +41,7 @@ public class PersistenceMock implements PersistenceDelegate {
 	}
 
 	@Override
-	public List<List<Object>> findAll(Persistable persistable) {
+	public List<Persistable> findAll(Persistable persistable) {
 		// TODO Auto-generated method stub
 		return null;
 	}

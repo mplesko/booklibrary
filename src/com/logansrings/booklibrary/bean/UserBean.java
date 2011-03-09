@@ -29,8 +29,7 @@ public class UserBean {
                        return "success";
                  } else {
                        ApplicationUtilities.createFacesError("loginForm",
-                                   "Unable to create account:",
-user.getContext());
+                                   "Unable to create account:", user.getContext());
                        return "failure";
                  }
 
@@ -61,8 +60,7 @@ user.getContext());
                  }
            } catch (Exception e) {
                  Notification.newNotification(this, "UserBean.login()",
-                             "failed", "", Type.TECHNICAL, Severity.ERROR,
-e);
+                             "failed", "", Type.TECHNICAL, Severity.ERROR, e);
                  ApplicationUtilities.createFacesError("loginForm",
                              "Technical error prevented user login", "");
                  return "failure";

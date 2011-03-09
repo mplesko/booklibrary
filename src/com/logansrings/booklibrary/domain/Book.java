@@ -53,25 +53,25 @@ public class Book implements Persistable{
 
 	private void findById() {
 		persistableMode = "findId";
-		List<Object> list = getPersistenceDelegate().findOne(this);
-		if (list.size() == 0) {
+		Persistable persistable = getPersistenceDelegate().findOne(this);
+		if (persistable == null) {
 			title = "N/A";
 			valid = false;
 		} else {
 			valid = true;
-			title = (String) list.get(1);
-			authorId = (Long)list.get(2);
+			title = ((Book)persistable).getTitle();
+			authorId = ((Book)persistable).getAuthorId();
 		}
 	}
 
 	private void findByTitle() {
 		persistableMode = "findTitle";
-		List<Object> list = getPersistenceDelegate().findOne(this);
-		if (list.size() == 0) {
+		Persistable persistable = getPersistenceDelegate().findOne(this);
+		if (persistable == null) {
 			valid = false;
 		} else {
 			valid = true;
-			id = (Long)list.get(0);
+			id = persistable.getId();
 		}
 	}
 
@@ -148,7 +148,7 @@ public class Book implements Persistable{
 		return title; 
 	}
 	
-	Long getId() {
+	public Long getId() {
 		return id; 
 	}
 
@@ -177,19 +177,32 @@ public class Book implements Persistable{
 
 	public static List<Book> getAll() {
 		List<Book> books = new ArrayList<Book>();
-		List<List<Object>> findList = getPersistenceDelegate().findAll(new Book());
+		List<Persistable> findList = getPersistenceDelegate().findAll(new Book());
 		if (findList.size() == 0) {
 			// nothing to do
 		} else {
-			for (List<Object> objectList : findList) {
-				Book book = new Book();
-				book.id = (Long) objectList.get(0);
-				book.title = (String) objectList.get(1);
-				book.authorId = (Long) objectList.get(2);
-				book.author = new Author(book.authorId);
-				books.add(book);
+			for (Persistable persistable : findList) {
+				books.add((Book)persistable);
 			}
 		}
 		return books;
 	}
+	
+	@Override
+	public Persistable newFromDBColumns(List<Object> objectList) {
+		Book book = new Book();
+		if (objectList.size() == getColumnCount()) {
+			book.id = (Long) objectList.get(0);
+			book.title = (String) objectList.get(1);
+			book.authorId = (Long) objectList.get(2);
+			book.author = new Author(book.authorId);
+		}
+		return book;
+	}
+	@Override
+	public void setId(Long id) {
+		this.id = id;		
+	}
+
+
 }

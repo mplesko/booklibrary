@@ -39,7 +39,7 @@ public class InMemoryPersistenceDelegate implements PersistenceDelegate {
 		return true;
 	}
 
-	public List<Object> findOne(Persistable persistable) {
+	public Persistable findOne(Persistable persistable) {
 		for (InMemoryObject inMemoryObject :
 			getInMemoryObjectsForTable(persistable.getTableName())) {
 
@@ -55,10 +55,11 @@ public class InMemoryPersistenceDelegate implements PersistenceDelegate {
 				}
 			}
 			if (found) {
-				return inMemoryObject.getValuesAsList();
+				return persistable.newFromDBColumns(
+						inMemoryObject.getValuesAsList());
 			}                                                             
 		}
-		return new ArrayList<Object>();                              
+		return null;                              
 	}
 
 	private List<InMemoryObject> getInMemoryObjectsForTable(String tableName) {
@@ -73,15 +74,15 @@ public class InMemoryPersistenceDelegate implements PersistenceDelegate {
 
 	@Override
 	public boolean exists(Persistable persistable) {
-		if (findOne(persistable).isEmpty()) {
+		if (findOne(persistable) == null) {
 			return false;
 		} else {
 			return true;
 		}
 	}
 
-	public List<List<Object>> findAny(Persistable persistable) {
-		List<List<Object>> returnList = new ArrayList<List<Object>>();
+	public List<Persistable> findAny(Persistable persistable) {
+		List<Persistable> returnList = new ArrayList<Persistable>();
 		for (InMemoryObject inMemoryObject :
 			getInMemoryObjectsForTable(persistable.getTableName())) {
 
@@ -97,18 +98,20 @@ public class InMemoryPersistenceDelegate implements PersistenceDelegate {
 				}
 			}
 			if (found) {
-				returnList.add(inMemoryObject.getValuesAsList());
+				returnList.add(persistable.newFromDBColumns(
+						inMemoryObject.getValuesAsList()));
 			}                                                             
 		}                             
 		return returnList;
 	}
 
 	@Override
-	public List<List<Object>> findAll(Persistable persistable) {
-		List<List<Object>> returnList = new ArrayList<List<Object>>();
+	public List<Persistable> findAll(Persistable persistable) {
+		List<Persistable> returnList = new ArrayList<Persistable>();
 		for (InMemoryObject inMemoryObject :
 			getInMemoryObjectsForTable(persistable.getTableName())) {
-			returnList.add(inMemoryObject.getValuesAsList());
+			returnList.add(persistable.newFromDBColumns(
+					inMemoryObject.getValuesAsList()));
 		}                             
 		return returnList;
 	}

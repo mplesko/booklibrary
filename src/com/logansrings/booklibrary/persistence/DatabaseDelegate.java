@@ -76,8 +76,7 @@ public class DatabaseDelegate implements PersistenceDelegate {
 		return found;
 	}
 
-	public List<Object> findOne(Persistable persistable) {
-		List<Object> list = new ArrayList<Object>();
+	public Persistable findOne(Persistable persistable) {
 		try {
 			Connection conn = getConnection();
 			try {
@@ -111,9 +110,11 @@ public class DatabaseDelegate implements PersistenceDelegate {
 								" actual:" + columnCount, 
 								Type.TECHNICAL, Severity.ERROR);   
 					} else {
+						List<Object> list = new ArrayList<Object>();
 						for (int i = 1; i <= columnCount; i++) {
 							list.add(resultSet.getObject(i));
-						}				
+						}
+						return persistable.newFromDBColumns(list);
 					}
 				}
 			} finally {
@@ -125,11 +126,11 @@ public class DatabaseDelegate implements PersistenceDelegate {
 					persistable.toString() + " failed", e.getMessage(), 
 					Type.TECHNICAL, Severity.ERROR);   
 		}
-		return list;
+		return null;
 	}
 
-	public List<List<Object>> findAny(Persistable persistable) {
-		List<List<Object>> returnList = new ArrayList<List<Object>>();
+	public List<Persistable> findAny(Persistable persistable) {
+		List<Persistable> returnList = new ArrayList<Persistable>();
 		try {
 			Connection conn = getConnection();
 			try {
@@ -148,7 +149,7 @@ public class DatabaseDelegate implements PersistenceDelegate {
 						for (int j = 1; j <= persistable.getColumnCount(); j++) {
 							objectList.add(resultSet.getObject(j));
 						}
-						returnList.add(objectList);
+						returnList.add(persistable.newFromDBColumns(objectList));
 					}
 				}
 			} finally {
@@ -163,8 +164,8 @@ public class DatabaseDelegate implements PersistenceDelegate {
 		return returnList;
 	}
 
-	public List<List<Object>> findAll(Persistable persistable) {
-		List<List<Object>> returnList = new ArrayList<List<Object>>();
+	public List<Persistable> findAll(Persistable persistable) {
+		List<Persistable> returnList = new ArrayList<Persistable>();
 		try {
 			Connection conn = getConnection();
 			try {
@@ -183,7 +184,7 @@ public class DatabaseDelegate implements PersistenceDelegate {
 						for (int j = 1; j <= persistable.getColumnCount(); j++) {
 							objectList.add(resultSet.getObject(j));
 						}
-						returnList.add(objectList);
+						returnList.add(persistable.newFromDBColumns(objectList));
 					}
 				}
 			} finally {

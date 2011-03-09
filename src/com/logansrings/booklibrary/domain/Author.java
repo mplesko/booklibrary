@@ -50,25 +50,24 @@ public class Author implements Persistable {
 
 	private void findById() {
 		persistableMode = "findId";
-		List<Object> list = getPersistenceDelegate().findOne(this);
-		if (list.size() == 0) {
+		Persistable persistable = getPersistenceDelegate().findOne(this);
+		if (persistable == null) {
 			valid = false;
-			// set Author to nullAuthor
 		} else {
 			valid = true;
-			firstName = (String) list.get(1);
-			lastName = (String)list.get(2);
+			firstName = ((Author)persistable).getFirstName();
+			lastName = ((Author)persistable).getLastName();
 		}
 	}
 
 	private void findByName() {
 		persistableMode = "findName";
-		List<Object> list = getPersistenceDelegate().findOne(this);
-		if (list.size() == 0) {
+		Persistable persistable = getPersistenceDelegate().findOne(this);
+		if (persistable == null) {
 			valid = false;
 		} else {
 			valid = true;
-			id = (Long)list.get(0);
+			id = persistable.getId();
 		}
 	}
 	
@@ -150,7 +149,12 @@ public class Author implements Persistable {
 		id = UniqueId.getId();
 	}
 
-	Long getId() {
+	@Override
+	public void setId(Long id) {
+		this.id = id;		
+	}
+	
+	public Long getId() {
 		return id;
 	}
 	
@@ -163,18 +167,25 @@ public class Author implements Persistable {
 
 	public static List<Author> getAll() {
 		List<Author> authors = new ArrayList<Author>();
-		List<List<Object>> findList = getPersistenceDelegate().findAll(new Author());
+		List<Persistable> findList = getPersistenceDelegate().findAll(new Author());
 		if (findList.size() == 0) {
 			// nothing to do
 		} else {
-			for (List<Object> objectList : findList) {
-				Author author = new Author();
-				author.id = (Long) objectList.get(0);
-				author.firstName = (String) objectList.get(1);
-				author.lastName = (String) objectList.get(2);
-				authors.add(author);
+			for (Persistable persistable : findList) {
+				authors.add((Author)persistable);
 			}
 		}
 		return authors;
 	}
+	
+	public Author newFromDBColumns(List<Object> objectList) {
+		Author author = new Author();
+		if (objectList.size() == getColumnCount()) {
+			author.id = (Long) objectList.get(0);
+			author.firstName = (String) objectList.get(1);
+			author.lastName = (String) objectList.get(2);
+		}
+		return author;
+	}
+
 }
