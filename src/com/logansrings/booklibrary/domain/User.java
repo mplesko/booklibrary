@@ -82,6 +82,7 @@ public class User implements Persistable {
 
 	private void createAccount() {
 		if (updateEncryptedPassword()) {
+			updateId();			
 			persistableMode = "create";
 			if (getPersistenceDelegate().persist(this)) {
 				valid = true;
@@ -113,6 +114,10 @@ public class User implements Persistable {
 			valid = false;
 			context = "invalid user name or password";
 		}		
+	}
+
+	private void updateId() {
+		id = UniqueId.getId();
 	}
 
 	/**
@@ -212,16 +217,10 @@ public class User implements Persistable {
 	@Override
 	public Persistable newFromDBColumns(List<Object> objectList) {
 		User user = new User();
-<<<<<<< HEAD
 		if (objectList.size() == getColumnCount()) {
 			user.id = (Long)objectList.get(0);
 			user.userName = (String)objectList.get(1);
 			user.encryptedPassword = (String)objectList.get(2);
-=======
-		if (objectList.size() == 3) {
-			id = (Long)objectList.get(0);
-			encryptedPassword = (String)objectList.get(2);
->>>>>>> 808f988503fddcb65c6d1914df21508bf05e8c3e
 		}
 		return user;
 	}
@@ -229,8 +228,4 @@ public class User implements Persistable {
 	public void setId(Long id) {
 		this.id = id;		
 	}
-<<<<<<< HEAD
-=======
-
->>>>>>> 808f988503fddcb65c6d1914df21508bf05e8c3e
 }

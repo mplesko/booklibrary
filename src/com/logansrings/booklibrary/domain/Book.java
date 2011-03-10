@@ -77,6 +77,7 @@ public class Book implements Persistable{
 
 	public void persistBook() {
 		persistableMode = "create";
+		updateId();			
 		if (getPersistenceDelegate().persist(this)) {
 			// ok, expected
 		} else {
@@ -162,6 +163,10 @@ public class Book implements Persistable{
 		return author.getLastName();
 	}
 	
+	private void updateId() {
+		id = UniqueId.getId();
+	}
+
 	public boolean isValid() {
 		return valid;
 	}
@@ -182,20 +187,11 @@ public class Book implements Persistable{
 		}
 		return books;
 	}
-<<<<<<< HEAD
 	
 	@Override
 	public Persistable newFromDBColumns(List<Object> objectList) {
 		Book book = new Book();
 		if (objectList.size() == getColumnCount()) {
-=======
-
-
-	@Override
-	public Persistable newFromDBColumns(List<Object> objectList) {
-		Book book = new Book();
-		if (objectList.size() == 3) {
->>>>>>> 808f988503fddcb65c6d1914df21508bf05e8c3e
 			book.id = (Long) objectList.get(0);
 			book.title = (String) objectList.get(1);
 			book.authorId = (Long) objectList.get(2);
@@ -207,9 +203,6 @@ public class Book implements Persistable{
 	public void setId(Long id) {
 		this.id = id;		
 	}
-<<<<<<< HEAD
 
 
-=======
->>>>>>> 808f988503fddcb65c6d1914df21508bf05e8c3e
 }

@@ -5,11 +5,7 @@ import java.util.List;
 public class DummyDelegate implements PersistenceDelegate {
 	public boolean persistReturnValue;
 	public Persistable findOneReturnValue;
-<<<<<<< HEAD
 	public List<Persistable> findAnyReturnValue;
-=======
-	public List<List<Object>> findAnyReturnValue;
->>>>>>> 808f988503fddcb65c6d1914df21508bf05e8c3e
 	public boolean existsReturnValue;
 
 	public void setFindOneReturnValue(Persistable findOneReturnValue) {
